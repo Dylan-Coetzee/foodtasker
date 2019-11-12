@@ -8,6 +8,14 @@ body {
   background-color: #3F3F63;
 }
 
+.bg-gray {
+  background-color: #88A1B2;
+}
+
+.text-white {
+  color: white;
+}
+
 .btn-pink {
   color: white;
   background-color: #EE5462;
@@ -71,7 +79,7 @@ body {
   padding-right: 30px;
 }
 
-.sidebar .list-group .list-group-item,
+.sidebar .list-group .list-group-item.active,
 .sidebar .list-group .list-group-item:hover {
   background-color: #383957;
   color: #E0DEEB;
@@ -100,4 +108,18 @@ body {
 /*content*/
 .content  {
   padding: 0 40px;
+}
+
+.content .panel {
+  border: none;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td {
+  vertical-align: middle;
+}
+
+.table,
+.table > thead > tr > th, {
+  border-color: #88A1B2;
 }
