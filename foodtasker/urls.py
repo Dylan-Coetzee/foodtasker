@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from foodtaskerapp import views
+from foodtaskerapp import views, apis
 from django.contrib.auth import views as auth_views
 
 from django.conf.urls.static import static
@@ -30,12 +30,7 @@ urlpatterns = [
         name = 'restaurant-sign-in'),
     url(r'^restaurant/sign-out', auth_views.LogoutView.as_view(next_page='/'),
         name = 'restaurant-sign-out'),
-    # url(r'^restaurant/sign-in/$', auth_views.login,
-    #     {'template_name': 'restaurant/sign_in.html'},
-    #     name = 'restaurant-sign-in'),
-    # url(r'^restaurant/sign-out', auth_views.logout,
-    #     {'next_page': '/'},
-        # name = 'restaurant-sign-out'),
+
     url(r'^restaurant/$', views.restaurant_home, name='restaurant-home'),
     url(r'^restaurant/sign-up', views.restaurant_sign_up,
         name = 'restaurant-sign-up'),
@@ -48,7 +43,15 @@ urlpatterns = [
 
     # Sign In/ Sign Up/ Sign Out
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
-    # (r'^auth/', include('rest_framework_social_oauth2.urls')),
     # /convert-token (sign in/ sign up)
     # /revoke-token (sign out)
+
+    #Api for Customers URLs
+    url(r'^api/customer/restaurants/$', apis.customer_get_restaurants),
+    url(r'^api/customer/meals/(?P<restaurant_id>\d+)/$', apis.customer_get_meals),
+    url(r'^api/customer/order/add/$', apis.customer_add_order),
+    url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+    #Notification when a new order is raised
+    url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
