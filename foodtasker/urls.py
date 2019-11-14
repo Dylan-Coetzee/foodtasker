@@ -54,4 +54,11 @@ urlpatterns = [
     #Notification when a new order is raised
     url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
 
+    #Api for Driver
+    url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
+    url(r'^api/driver/orders/pick/$', apis.driver_pick_order),
+    url(r'^api/driver/orders/latest/$', apis.driver_get_latest_order),
+    url(r'^api/driver/orders/complete/$', apis.driver_complete_order),
+    url(r'^api/driver/revenue/$', apis.driver_get_revenue),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
