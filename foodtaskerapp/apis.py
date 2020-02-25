@@ -107,7 +107,7 @@ def customer_get_latest_order(request):
 
     customer = access_token.user.customer
     order = OrderSerializer(Order.objects.filter(customer = customer).last()).data
-
+    
     return JsonResponse({ "order": order })
 
 def customer_driver_location(request):
